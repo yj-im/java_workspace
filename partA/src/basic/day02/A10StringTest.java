@@ -43,15 +43,12 @@ public class A10StringTest {
         message.endsWith("Hello");
         System.out.println(message.endsWith("Hello"));
 
+        // 마지막 매칭되는 문자열의 위치
+        message.lastIndexOf(" ");
+        System.out.println(message.lastIndexOf(" "));
+
         System.out.println("-----------------------------");
-        // 문자열의 내용이 같은지 비교
-        System.out.println(3>0);
-        boolean test = (3==3);  // 경고 이유 : 리터럴끼리 비교
-        System.out.println(test);
-        test = (3!=3);
-        System.out.println(test);
 
-        // 문자열 내용 비교에 == 사용 안함.
-
+       
     }
 }
