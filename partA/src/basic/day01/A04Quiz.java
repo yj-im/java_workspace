@@ -37,6 +37,7 @@ public class A04Quiz {
       // wonToDollar 메소드 정의
       // money, rateWon 은 wonToDollar 메소드 { } 스콥에서만 사용하는 지역변수
       public static int wonToDollar(int money , int rateWon){
+        
           return money / rateWon;
       }
 
@@ -55,6 +56,10 @@ public class A04Quiz {
         return (double)money * rateWon;
     }
   
+    // A07 예제 테스트용
+    private static void printQuiz(){
+      System.out.println("자바 첫째날 메소드 연습 클래스");
+    }
 
 
 } // class end
