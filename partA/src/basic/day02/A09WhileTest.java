@@ -39,7 +39,7 @@ public class A09WhileTest {
         start=1;       // start=0; 으로 하면 sum+= ++start; => ++하고 덧셈
         sum=0;
         while(start<=100){
-            sum+=start ++;  // 1번 덧셈하고 ++
+            sum+=start++;  // 1번 덧셈하고 ++
         }
         System.out.println("1부터 100까지의 합 = "+sum);
 
@@ -49,6 +49,7 @@ public class A09WhileTest {
         while(n<=m){
             sum+=n++;   // 11번 반복.
         }
-        System.out.println("n=10부터 m=20까지의 합 = "+sum);
+        // 터미널에서 인코딩 UTF-8 로 변경. chcp 65001
+        System.out.println("👨🏻n=10부터 m=20까지의 합 = "+sum);
     }
 }

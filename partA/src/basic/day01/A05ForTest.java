@@ -16,11 +16,15 @@ public class A05ForTest {
     
   }
   
-  public static long sumNtoM(int x, int y)
+  public static long sumNtoM(long x, long y)
   {
-    
-    
-
+    long sum=0;
+    for(long i=x; i<=y; i++){
+        sum=sum+i;
+    }
+    return sum;
+// 4+5+6+7+8+9+10
+// 0+x/ x=x+(x+1) / x+1 = x+1 + x+2
     }
 
 
