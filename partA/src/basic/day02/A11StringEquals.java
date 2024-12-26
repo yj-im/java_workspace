@@ -32,11 +32,11 @@ public class A11StringEquals {
 
         // 문자열 비교는 대부분 내용비교임. equals 메소드 중요함.
 
-        // 문자열의 길이가 0인지 참 또는 거짓으로 리턴.
+        // 문자열의 길이가 0이면 참 길이가 있으면 거짓으로 리턴.
         System.out.println("isEmpty : " + "  ".isEmpty());  // false
         System.out.println("isEmpty : " + "".isEmpty());  // true
 
-        // 문자열의 내용이 공백인지 boolean 리턴.
+        // 문자열의 내용이 공백이면 참 내용이 있으면 false
         System.out.println("isBlank : " + "  ".isBlank());  // true
         System.out.println("isBlank : " + "".isBlank());  // true
 
