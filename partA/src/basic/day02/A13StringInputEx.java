@@ -20,8 +20,8 @@ public class A13StringInputEx {
             System.out.println("선택 하세요 >>>> ");
             menu=sc.nextLine();
 
-            switch (menu) {
-                case "1":
+            switch (menu) {     // if 문으로 하면 equals 메소드 사용
+                case "1":   // menu.equals("1")
                     System.out.println("장바구니 👜👜...많이 담아 주세요.");
                     break;
                 case "2":

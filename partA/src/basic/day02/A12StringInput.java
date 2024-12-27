@@ -26,6 +26,6 @@ public class A12StringInput {
         }
         sc.close();     // 입력 자원 사용 종료(닫기)
 
-        
+
     }
 }
