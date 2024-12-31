@@ -44,7 +44,7 @@ public class A25ArrayExample {
         for(int i=0;i<scores.length; i++){
             System.out.println(scores[i]+"\t");
             
-            System.out.println("socre 배열의 참조값"+scores);
+            System.out.println("scores 배열의 참조값"+scores);
 
             int[] testarr=new int[7];
             arraysChg(testarr);
