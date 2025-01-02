@@ -22,7 +22,7 @@ public class A21MathTest {
 
         System.out.println(Math.floor(dval));   // 내림
 
-        System.out.println(Character.toUpperCase('a'));     // 대문자 검사
+        System.out.println(Character.isUpperCase('a'));     // 대문자 검사
         System.out.println(Character.isLowerCase('A'));     // 소문자 검사
     }
 }

@@ -5,22 +5,32 @@ import java.util.Scanner;
 public class A23Homework {
 
     public static void main(String[] args) {
-        String id;
+        
         Scanner sc=new Scanner(System.in);
-        boolean run=true;
-
-        while(run){
-            System.out.println("1 : 아이디 입력하세요>>>");
-            id=sc.nextLine();
-            //test.charAt(i) 으로 아이디에 입력한 글자 하나씩 가져와서 검토하는 식으로
-          switch (id) {
-            case 1 : 
-                System.out.println();
-                break;
+        
+        while(true){
+          System.out.println("아이디 입력하세요");
+          String gmail_id = sc.nextLine();
           
-            default:
-                break;
+
+          if(isValid(gmail_id)){
+            System.out.println("아이디 입력확인");
+            break;
+          }else {
+            System.out.println("다시입력하세요");
           }
-        }
+        
+        
+       
+      }
+      sc.close();
     }
+
+        public static boolean isValid(String gmail_id){
+    return (gmail_id.charAt(0)>='A'&&gmail_id.charAt(0)<='Z')||
+    (gmail_id.charAt(0)>='a'&& gmail_id.charAt(0)<='z')||
+    (gmail_id.charAt(0)>='0'&& gmail_id.charAt(0)<='9')||
+    (gmail_id.contains(".")==true)&&(gmail_id.contains("~!@#$%^&*()_+|;:'<>?,/")==false);
+}
+
 }
