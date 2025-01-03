@@ -1,5 +1,6 @@
 package object.day6;
 
+// 연산 : + - *  추가연산 : 몫(/, DIV), 나머지(%, MOD) 
 public class MyMathV3 {
 
     private int first;

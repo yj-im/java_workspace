@@ -30,7 +30,7 @@ public class A23Homework {
     return (gmail_id.charAt(0)>='A'&&gmail_id.charAt(0)<='Z')||
     (gmail_id.charAt(0)>='a'&& gmail_id.charAt(0)<='z')||
     (gmail_id.charAt(0)>='0'&& gmail_id.charAt(0)<='9')||
-    (gmail_id.contains(".")==true)&&(gmail_id.contains("~!@#$%^&*()_+|;:'<>?,/")==false);
+    (gmail_id.contains(".")==true)&&(gmail_id.charAt(-1)!='.');
 }
 
 }

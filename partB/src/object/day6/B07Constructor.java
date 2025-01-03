@@ -5,7 +5,7 @@ public class B07Constructor {
 
     public static void main(String[] args) {
         
-        // 생성자에 출력문을 작성한 예시.
+        // 생성자에 출력문 을 작성한 예시.
         System.out.println("==== MyClass6 로 객체 생성하기 ====");
         MyClass6 m6=new MyClass6();
         System.out.println(m6);
