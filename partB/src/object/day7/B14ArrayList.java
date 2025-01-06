@@ -2,6 +2,7 @@ package object.day7;
 
 import java.util.ArrayList;
 
+// ArrayList 는 List 종류중 하나. List<T> 이런식으로 쓴다.
 // 배열처럼 여러개의 데이터를 저장하는 자료구조.(데이터를 담는 구조)
 // 좋은 점 : 1) 크기가 고정되어 있지 않다(크기가 동적이다. 유연함)      2) 추가(삽입)와 삭제 메소드가 있음. (add 할수잇고 get 할수잇고 set, remove 등등을 할수있음.)
 // 문법적 특징 : Generic Type 기호 <> 에 저장할 데이터의 타입을 지정한다.
