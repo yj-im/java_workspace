@@ -5,12 +5,14 @@ package basic.day04;
 public class A27MethodOverloading {
 
     public static void main(String[] args) {
+        
         print("연습입니다.");
         print();
         // print(3);  print(3)에 맞는게 없어서 오류.
         print(3,3);
 
         // div 메소드 : 정수 / 정수 = 정수 , 실수 / 실수 = 실수
+       
         System.out.println(div(5,3));
         System.out.println(div(5.0,3.0));
     }
@@ -26,6 +28,7 @@ public class A27MethodOverloading {
     }
     public static int div(int a, int b){
         return a/b;
+        
     }
     public static double div(double a, double b){
         return a/b;
