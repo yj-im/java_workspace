@@ -16,7 +16,7 @@ public class B30ComparatorTest {
     members[2] = new Member("nayeon", 33);
     members[3] = new Member("dahyeon", 25);
 
-    Arrays.sort(members, )
+   
    
     }
 
@@ -32,6 +32,9 @@ class Member {
         this.name=name;
         this.age=age;
       }
+    public String getName(){
+        return name;
+    }
 
     @Override
     public String toString() {
