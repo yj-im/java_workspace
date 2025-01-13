@@ -1,4 +1,4 @@
-package exception.day12;
+package io.day12;
 
 import java.awt.FileDialog;
 import java.io.FileInputStream;
