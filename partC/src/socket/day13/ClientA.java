@@ -1,4 +1,4 @@
-package io.day13;
+package socket.day13;
 
 import java.io.IOException;
 import java.io.InputStream;

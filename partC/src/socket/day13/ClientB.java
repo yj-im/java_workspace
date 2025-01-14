@@ -1,4 +1,4 @@
-package io.day13;
+package socket.day13;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
