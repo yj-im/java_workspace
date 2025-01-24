@@ -47,8 +47,6 @@ public class ResultSetTest {
             System.out.println("데이터가 또 있나요?");
             System.out.println(rs.next());
 
-
-
         } catch (Exception e) {
             
         }
