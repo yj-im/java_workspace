@@ -8,6 +8,59 @@ public class CustomerRegisterApp {
   public static void main(String[] args) {
     
     modify();
+    System.out.println(" [[[ 고객 관리 APP ]]] ");
+    boolean run=true;
+    while (run) {
+      System.out.println("선택 메뉴 : 1. 고객 등록 2. 고객 정보 조회 3. 고객 정보 수정");
+      System.out.println("            4. 고객 회원 탈퇴     5. 종료");
+      System.out.println("메뉴 선택 >>>");
+      String menu=System.console().readLine();
+      
+      switch (menu) {
+        case "1":
+          register();
+          break;
+      
+        case "2":
+          print_customer_info();
+          break;
+
+        case "3":
+        modify();
+          break;
+
+        case "4":
+        remove();
+          break;
+
+        case "5":
+        run=false;
+          break;
+        default:
+          break;
+      }  
+    }
+    {
+      if (run==false) {
+        
+        System.out.println("프로그램 종료합니다.");
+      }
+    }
+}
+
+public static void print_customer_info(){
+  System.out.println("고객 조회임다");
+  System.out.println("아이디 입력 >>> ");
+  String customid=System.console().readLine(); 
+  // TblCustomerDao customerDao = new TblCustomerDao();   // 싱글톤 패턴 정의하면 오류
+  TblCustomerDao customerDao=TblCustomerDao.getInstance();
+  Customer customer=customerDao.selectByPk(customid);
+  System.out.println("[이름] "+customer.getName());
+  System.out.println("[이메일] "+customer.getEmail());
+  System.out.println("[나이] "+customer.getAge());
+  System.out.println("[가입일자] "+customer.getRegDate());
+  System.out.println("[우편번호] "+customer.getPostcode());
+
 }
 
 public static void remove(){
@@ -15,7 +68,8 @@ public static void remove(){
     System.out.print(" 아이디 입력 >>> ");
     String customid = System.console().readLine();     
 
-    TblCustomerDao customerDao=new TblCustomerDao();
+ // TblCustomerDao customerDao = new TblCustomerDao();   // 싱글톤 패턴 정의하면 오류
+ TblCustomerDao customerDao=TblCustomerDao.getInstance();
     int result=customerDao.delete(customid);
 
     if(result==0){
@@ -28,7 +82,8 @@ public static void remove(){
 
   public static void modify() {
     
-    TblCustomerDao customerDao = new TblCustomerDao();
+    // TblCustomerDao customerDao = new TblCustomerDao();   // 싱글톤 패턴 정의하면 오류
+  TblCustomerDao customerDao=TblCustomerDao.getInstance();
     System.out.println("===== 고객 정보 수정 메뉴 입니다. ======");
     System.out.print(" 아이디 입력 >>> ");
     String customid = System.console().readLine();     
@@ -57,9 +112,22 @@ public static void remove(){
 
 
   public static void register(){
+   // TblCustomerDao customerDao = new TblCustomerDao();   // 싱글톤 패턴 정의하면 오류
+  TblCustomerDao customerDao=TblCustomerDao.getInstance();
     System.out.println("===== 고객 등록 (회원 가입) 메뉴 입니다. ======");
-    System.out.print(" 아이디 입력 >>> ");
-    String customid = System.console().readLine();     
+    boolean run=true;
+    String customid=null;
+    while (run) {
+      System.out.println("사용할 아이디 입력 >>>");
+      customid=System.console().readLine();
+      if(customerDao.selectByPk(customid)!=null){
+        System.out.println("중복된 아이디가 있습니다");
+      }else{
+        System.out.println("사용 가능합니다. 해당 아이디를 사용 하시겠습니까? (Y/N)");
+        if(System.console().readLine().toUpperCase().equals("Y"))break;
+      }
+    }
+      
     System.out.print(" 이름 입력 >>> ");
     String name = System.console().readLine();
     System.out.print(" 이메일 입력 >>> ");
@@ -71,7 +139,7 @@ public static void remove(){
     Customer customer = new Customer(customid, name, email, age, null);
 
     //dao 클래스 사용하기 
-    TblCustomerDao customerDao = new TblCustomerDao();
+   
     int result = customerDao.insert(customer);
 
     if(result==0){
@@ -80,5 +148,6 @@ public static void remove(){
       System.out.println("고객 등록 성공!!");
     }
   }
+
 
 }
