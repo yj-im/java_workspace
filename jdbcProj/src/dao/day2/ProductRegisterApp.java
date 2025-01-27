@@ -1,5 +1,7 @@
 package dao.day2;
 
+import java.util.List;
+
 import vo.day1.Customer;
 import vo.day1.Product;
 
@@ -106,12 +108,12 @@ public static void print_search_info(){
   System.out.println("상품 키워드 입력 >>> ");
   String pname=System.console().readLine(); 
   TblProductDao productDao=TblProductDao.getInstance();
-  Product product=productDao.selectByKeyword(pname);
-  System.out.println("[상품코드] "+product.getPcode());
-  System.out.println("[카테고리] "+product.getCategory());
-  System.out.println("[상품이름] "+product.getPname());
-  System.out.println("[가격] "+product.getPrice());
+  List<Product> list=productDao.selectByKeyword(pname);
 
+  System.out.println("=== 가격의 상품 ===");
+            for(Product p : list){
+                System.out.println(String.format(" %-20s   %-20s   %4s   %9d" , p.getPcode(),p.getPname(),p.getCategory(),p.getPrice()));
+            }
  }
  
 }
