@@ -1,4 +1,4 @@
-package vo.day1;
+package vo;
 
 public class Product {
 

@@ -1,10 +1,15 @@
 package day3;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import dao.day2.TblProductDao;
+import dao.TblBuyDao;
+import dao.TblProductDao;
+import vo.BuyVo;
+import vo.CustomerOrdervo;
+import vo.Product;
 
 // 구매 테이블의 데이터를 조작하는 예제
 // 장바구니 구현 예제
@@ -29,6 +34,30 @@ public class CartMenu {
     // switch 완성해서 장바구니 테스트 해보세요.
   }
 
+  public void showMyOrderList() {
+    System.out.println(" ~~~~ "+ this.customerId+"님 구매 목록");
+
+    // List<BuyVo> myOrderList=dao.selectByCustomerId(this.customerId);
+    // for 문 출력                      ㄴ 날짜 내림차순 정렬
+    // for(BuyVo p : myOrderList){
+      // System.out.println(String.format("%10s %10d sysdate" , p.getPcode(),p.getQuantity(),p.getBuy_date()));
+    // }
+    List<CustomerOrdervo> myOrderList=dao.selectCustomerOrderList(customerId);
+    // 날짜와 시간 출력 형식 지정.
+    SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    for(CustomerOrdervo c : myOrderList){
+      System.out.println(String.format("%-20s \t%,6d %3d %-20s %-4s", c.getPname(),c.getPrice(),c.getQuantity(),sdf.format(c.getBuy_date()),c.getCategory()));
+    }
+  }
+
+  public void showMenu(){
+    System.out.println(".".repeat(70));
+    System.out.println("[C] 카테고리별 상품 조회      [P] 상품명 키워드 검색     [M]나의 구매내역");
+    System.out.println("[B] 바로 구매하기     [X] 구매 종료");
+    System.out.println("::장바구니::[A] 담기  [L] 목록  [R] 삭제   [Y] 모두 구매 ");
+    System.out.println(".".repeat(70));
+  }
+
   public void start() {
     System.out.println("[[[[ 우리 쇼핑몰 ]]]]");
     System.out.print("사용자 아이디 입력하세요. >>> ");
@@ -47,38 +76,66 @@ public class CartMenu {
       System.out.print("메뉴 선택 하세요. >>> ");
       String menu = System.console().readLine();
       switch (menu) {
-        case "A","a":
-          addCartItem();
-          break;
-        case "L","l":
-          showCartList();
-          break;
-        case "R","r":
-          removeCartItem();
-          break;
-        case "B","b":
-          buyOneItem();
-          break;
-        case "Y","y":
-          buyCartItems();
-          
-          break;  
-        case "X","x":
-          run=false;
-          break;
-        default:
-          break;
-      }
-    }
-  }
+                  case "M", "m":
+                    showMyOrderList();        // sql SELECT 실행 - tbl_buy 테이블
+                    break;
+                  case "C", "c":
+                    showProductByCategory();  // sql SELECT 실행  - tbl_product 테이블
+                    break;
+                  case "P","p":
+                    showProductByKeyword();   // sql SELECT 실행  - tbl_product 테이블
+                    break;
+                  case "A","a":
+                    addCartItem();            // cart 리스트 항목추가
+                    break;
+                  case "L","l":
+                    showCartList();           // cart 리스트 목록 출력
+                    break;
+                  case "R","r":
+                    removeCartItem();         // cart 리스트 항목 삭제
+                    break;
+                  case "B","b":
+                    buyOneItem();             // sql INSERT 실행  - tbl_buy 테이블
+                    break;
+                  case "Y","y":
+                    buyCartItems();           // sql INSERT 여러개 batch 실행 - tbl_buy 테이블
+                    break;  
+                  case "X","x":
+                    run=false;
+                    break;
+                  default:
+                    break;
+                }
+              }
+            }
+                                
+    
   
-  public void showMenu(){
-    System.out.println(".".repeat(70));
-    System.out.println("[C] 카테고리별 상품 조회      [P] 상품명 검색     [M]나의 구매내역");
-    System.out.println("[B] 바로 구매하기   [D] 구매 취소  [Q] 구매 수량 변경  [X] 구매 종료");
-    System.out.println("::장바구니::[A] 담기  [L] 목록  [R] 삭제   [Y] 모두 구매 ");
-    System.out.println(".".repeat(70));
+    public void showProductByKeyword() {
+      System.out.println("상품명 키워드 입력 >>> ");
+      String pname=System.console().readLine();
+
+      List<Product> list=productDao.selectByKeyword(pname);
+
+    for(Product p : list){
+        System.out.println(String.format(" %-20s   %-15s   %4s   %,6d" , p.getPcode(),p.getPname(),p.getCategory(),p.getPrice()));
+    }
+    }
+                  
+  public void showProductByCategory() {
+    System.out.println("카테고리 : A1-과일 A2-수입과일 B1-인스턴트 식품 B2-선물세트 C1-과자류");
+    System.out.println("카테고리 입력 >>> ");
+    String category=System.console().readLine().toUpperCase();
+    // 조회 결과 for 문으로 출력하기 (상품명, 상품코드, 가격)
+    
+    List<Product> list=productDao.selectByCategory(category);
+    for(Product p : list){
+      System.out.println(String.format(" %-20s %-15s %,6d" ,p.getPname(),p.getPcode(),p.getPrice()));
+    }
+    
   }
+          
+  
 
   // 바로 구매하기 - 1개 행 insert 
   public void buyOneItem(){

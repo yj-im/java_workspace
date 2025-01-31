@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import day1.OracleConnectionUtil;
-import vo.day1.Customer;
-import vo.day1.Product;
+import vo.Customer;
+import vo.Product;
 
 public class ProductMenu2 {
 

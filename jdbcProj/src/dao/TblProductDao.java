@@ -1,4 +1,4 @@
-package dao.day2;
+package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import vo.day1.Product;
+import vo.Product;
 
 
 
@@ -105,6 +105,30 @@ public class TblProductDao {
       return product;
     } 
 
+     // 카테고리 값으로 상품 조회 - n개 행이 결과값
+     public List<Product> selectByCategory(String category){
+      List<Product> list=null;
+      String sql="SELECT * ROM tbl_product WHERE category = ?";
+      try (
+        Connection connection=getConnection();
+        PreparedStatement pstmt=connection.prepareStatement(sql);
+
+      ) {
+        list=new ArrayList<>();
+        pstmt.setString(1,category);
+        ResultSet rs=pstmt.executeQuery();
+        Product product=null;
+        while (rs.next()) {
+          product=new Product(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4)); 
+          list.add(product);
+        }
+        
+      } catch (SQLException e) {
+        System.out.println("예외 : "+e.getMessage());
+      }
+      return list;  // 조회 결과(행)가 없으면 product는 null
+    }
+
     public List<Product> selectByKeyword(String pname){
         String sql="SELECT * FROM tbl_product WHERE PNAME LIKE '%' || ? || '%' ";
         Product product=null;
@@ -123,11 +147,11 @@ public class TblProductDao {
         } catch (Exception e) {
             System.out.println("검색 SELECT 실행 예외 : "+e.getMessage());
         }
-        return list;
+        return list;  // 조회 결과(행)가 없으면 list가 null 은 아니고 size가 0
     }
     // 상품 가격 정보를 Map 에 저장하기 - map 연습 예제
     //  ㄴ Map에 저장한 데이터는 검색 성능이 좋다.
-    // 상품 가격표 Map에 저장하기
+    // 상품 가격표 Map에 저장하기 - n개 행이 조회
     public Map<String, Integer> getPriceTable(){
       Map<String, Integer>map=new HashMap<>();
       String sql="select pcode,price from tbl_product";

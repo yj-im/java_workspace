@@ -1,7 +1,7 @@
 package day2;
 
-import dao.day2.TblCustomerDao;
-import vo.day1.Customer;
+import dao.TblCustomerDao;
+import vo.Customer;
 
 public class CustomerRegisterApp {
 

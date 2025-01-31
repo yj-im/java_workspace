@@ -1,9 +1,9 @@
-package dao.day2;
+package dao;
 
 import java.util.List;
 
-import vo.day1.Customer;
-import vo.day1.Product;
+import vo.Customer;
+import vo.Product;
 
 public class ProductRegisterApp {
 public static void main(String[] args) {
